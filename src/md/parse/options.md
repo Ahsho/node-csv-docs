@@ -2,7 +2,7 @@
 title: Options
 description: Options relative to the csv-parse package
 keywords: ['csv', 'parse', 'options', 'delimiter', 'columns', 'comment', 'escape']
-sort: 3
+sort: 4
 ---
 
 # CSV Parse options
@@ -19,13 +19,13 @@ All options are optional. The options from the [Node.js Stream Writable](https:/
 * [`cast`](/parse/options/cast/) (boolean|function)   
   _Since version 2.2.0_   
   Alter the value of a field. If true, the parser will attempt to convert input strings to native types. A function must return the new value and the received arguments are the value to cast and the context object. This option was named `auto_parse` until version 2.
-* `cast_date` (boolean|function)   
+* [`cast_date`](/parse/options/cast_date/) (boolean|function)   
   _Since version 1.0.5_   
-  If true, the parser will attempt to convert input string to dates. A function must return a new value and the receive argument is the value to cast. It requires the `cast` option to be active. This option was named `auto_parse_date` until version 2. Be careful, it relies on [`Date.parse`](https://developer.mozilla.org/en-US/docs/Web/JavaScript/Reference/Global_Objects/Date/parse).
+  Convert the CSV field to a date. It requires the `cast` option to be active. This option was named `auto_parse_date` until version 2.
 * [`columns`](/parse/options/columns/) (array|boolean|function)   
   _Since early days_   
   Generate records as object literals instead of arrays. List of fields as an array, a user defined callback accepting the first line and returning the column names, or `true` if auto-discovered in the first CSV line. Defaults to `null`. Affects the result data set in the sense that records will be objects instead of arrays. A value "false" "null", or "undefined" inside the column array skips the column from the output.
-* [`columns_duplicates_to_array`](/parse/options/columns_duplicates_to_array/) (boolean)   
+* [`group_columns_by_name`](/parse/options/group_columns_by_name/) (boolean)   
   _Since version 4.10.0_  
   Convert values into an array of values when columns are activated and when multiple columns of the same name are found.
 * [`comment`](/parse/options/comment/) (string|buffer)   
@@ -49,33 +49,30 @@ All options are optional. The options from the [Node.js Stream Writable](https:/
 * [`ignore_last_delimiters`](/parse/options/ignore_last_delimiters/) (boolean)   
   _Since version 4.15.0_   
   Disregard any delimiters present in the last field of the record, require the [`column`](/parse/options/columns/) option when `true`.
-* `info` (boolean)   
+* [`info`](/parse/options/info/) (boolean)   
   _Since version 4.0.0_   
   Generate two properties `info` and `record` where `info` is a snapshot of the info object at the time the record was created and `record` is the parsed array or object; note, it can be used conjointly with the `raw` option.
-* `ltrim` (boolean)   
+* [`ltrim`](/parse/options/ltrim/) (boolean)   
   _Since early days_   
   If `true`, ignore whitespace immediately following the delimiter (i.e. left-trim all fields). Defaults to `false`. Does not remove whitespace in a quoted field.
 * [`max_record_size`](/parse/options/max_record_size/) (integer)   
   _Since version 4.0.0_   
   Maximum number of characters to be contained in the field and line buffers before an exception is raised. It was previously named "max_limit_on_data_read".
-* `objname` (string|Buffer)   
+* [`objname`](/parse/options/objname/) (string|Buffer)   
   _Since early days_   
   Name of header-record title to name objects by; the string or Buffer value must not be empty and it must match a header value.
 * [`on_record`](/parse/options/on_record/) (function)   
   _Since 4.7.0_   
   Alter and filter records by executing a user defined function.
-* `quote` (char|Buffer|boolean)   
+* [`quote`](/parse/options/quote/) (char|Buffer|boolean)   
   _Since version 0.0.1_   
   Optional character surrounding a field as one character only; disabled if null, false or empty; defaults to double quote.
-* `raw` (boolean)   
+* [`raw`](/parse/options/raw/) (boolean)   
   _Since version 1.1.6_   
   Generate two properties `raw` and `record` where `raw` is the original CSV content and `record` is the parsed array or object; note, it can be used conjointly with the `info` option.
-* `record_delimiter` (chars|array)   
+* [`record_delimiter`](/parse/options/record_delimiter/) (chars|array)   
   _Since version 4.0.0_   
   One or multiple characters used to delimit records; defaults to auto discovery if not provided. Supported auto discovery methods are Linux ("\n"), Apple ("\r") and Windows ("\r\n") row delimiters. It was previously named `rowDelimiter`.
-* `relax` (boolean)   
-  _Since early days_   
-  Preserve quotes inside unquoted field (be warned, it doesn't make coffee).
 * [`relax_column_count`](/parse/options/relax_column_count/) (boolean)   
   _Since version 1.0.6_   
   Discard inconsistent columns count; disabled if null, false or empty; default to `false`.
@@ -85,19 +82,22 @@ All options are optional. The options from the [Node.js Stream Writable](https:/
 * [`relax_column_count_more`](/parse/options/relax_column_count/) (boolean)   
   _Since version 4.8.0_   
   Similar to `relax_column_count` but only apply when the record contains more fields than expected.
-* `rtrim` (boolean)   
+* [`relax_quotes`](/parse/options/relax_quotes/) (boolean)   
+  _Since version 0.0.1_   
+  Preserve quotes inside unquoted field (be warned, it doesn't make coffee).
+* [`rtrim`](/parse/options/rtrim/) (boolean)   
   _Since early days_   
   If `true`, ignore whitespace immediately preceding the delimiter (i.e. right-trim all fields). Defaults to `false`.  Does not remove whitespace in a quoted field.
 * [`skip_empty_lines`](/parse/options/skip_empty_lines/) (boolean)   
   _Since version 0.0.5_   
   Don't generate records for empty lines (line matching `/^$/`), defaults to `false`.
-* `skip_lines_with_empty_values` (boolean)   
+* [`skip_lines_with_empty_values`](/parse/options/skip_lines_with_empty_values/) (boolean)   
   _Since version 1.1.8_   
-  Don't generate records for lines containing empty column values (column matching `/\s*/`), empty Buffer or equals to `null` and `undefined` if their value was casted, defaults to `false`.
+  Don't generate records for lines containing empty values (column matching `/\s*/`), empty Buffer or equals to `null` and `undefined` if their value was casted, defaults to `false`.
 * [`skip_lines_with_error`](/parse/options/skip_lines_with_error/) (boolean)   
   _Since version 2.1.0_   
   Skip a line with error found inside and directly go process the next line.
-* `to` (number)   
+* [`to`](/parse/options/to/) (number)   
   _Since version 1.2.0_   
   Stop handling records after the requested number of records.
 * [`to_line`](/parse/options/to_line/) (number)   

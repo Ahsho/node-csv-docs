@@ -7,7 +7,7 @@ keywords: ['csv', 'parse', 'options', 'bom', 'utf', 'unicode', 'utf8']
 
 # Option `bom`
 
-The `bom` option strip the [byte order mark (BOM)](https://en.wikipedia.org/wiki/Byte_order_mark) from the input string or buffer. When activated, the BOM is automatically detected and the parsing will occur whether a BOM was found or not.
+The `bom` option strips the [byte order mark (BOM)](https://en.wikipedia.org/wiki/Byte_order_mark) from the input string or buffer. When activated, the BOM is automatically detected and the parsing will occur whether a BOM was found or not.
 
 It is recommended to always activate this option when working with UTF-8 files.
 
@@ -23,20 +23,9 @@ The UTF-8 BOM is a sequence of Bytes at the start of a text-stream (`EF BB BF` o
 
 ## Example
 
-It is a boolean value which default to `false`. The [bom example](https://github.com/adaltas/node-csv-parse/blob/master/samples/option.bom.js) simply activate the option:
+Default is the boolean value `false`. The [bom example](https://github.com/adaltas/node-csv/blob/master/packages/csv-parse/samples/option.bom.js) simply activate the option:
 
-```js
-const parse = require('csv-parse/lib/sync')
-const assert = require('assert')
-
-const data = "\ufeffa,b,c\n"
-const records = parse(data, {
-  bom: true
-})
-assert.deepStrictEqual(records, [
-  [ 'a', 'b', 'c' ]
-])
-```
+`embed:packages/csv-parse/samples/option.bom.js`
 
 ## Hidden BOM in output
 
@@ -44,19 +33,6 @@ The option is disabled by default. When importing UTF-8 input, such as when read
 
 Handling BOM header without this option may create unexpected behaviors. The BOM bytes will be present in the output and invisible, either in the values or in the object properties when using the `column` option.
 
-Consider the [following example](https://github.com/adaltas/node-csv-parse/blob/master/samples/option.bom.hidden.js), it illustrate how the property name is not the one printed in the console:
+Consider the [following example](https://github.com/adaltas/node-csv/blob/master/packages/csv-parse/samples/option.bom.hidden.js), it illustrate how the property name is not the one printed in the console:
 
-```js
-const parse = require('csv-parse/lib/sync')
-const assert = require('assert')
-
-const data = "\ufeffkey\nvalue"
-const records = parse(data, {
-  bom: false,
-  columns: true
-})
-// It seems that the output is perfectly fine
-assert.equal(JSON.stringify(records[0]), '{"﻿key":"value"}')
-// However, the first property include the BOM bytes
-assert.equal(Object.keys(records[0])[0], '\ufeffkey')
-```
+`embed:packages/csv-parse/samples/option.bom.hidden.js`

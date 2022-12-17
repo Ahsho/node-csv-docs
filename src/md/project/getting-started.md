@@ -17,16 +17,16 @@ CSV parser and stringifier.
 
 ## Project organisation
 
-The `csv` package is an umbrella which is itself split into 4 packages:
+The `csv` package is an umbrella project exposing 4 packages:
 
-*   [`csv-generate`](https://github.com/adaltas/node-csv-generate),
-    a flexible generator of CSV string and Javascript objects.
-*   [`csv-parse`](https://github.com/adaltas/node-csv-parse),
-    a parser converting CSV text into arrays or objects.
-*   [`stream-transform`](https://github.com/adaltas/node-stream-transform),
-    a transformation framework.
-*   [`csv-stringify`](https://github.com/adaltas/node-csv-stringify),
-    a stringifier converting records into a CSV text.
+*   [`csv-generate`](/generate)   
+    A flexible generator of CSV string and Javascript objects.
+*   [`csv-parse`](/parse)   
+    A parser converting CSV text into arrays or objects.
+*   [`stream-transform`](/transform)   
+    A transformation framework.
+*   [`csv-stringify`](/stringify)   
+    A stringifier converting records into a CSV text.
 
 It means you can either install the `csv` package directly or selectively install one of its child projects to decrease your dependencies.
 
@@ -34,7 +34,6 @@ It means you can either install the `csv` package directly or selectively instal
 
 Installation command is `npm install csv`. If using [Yarn](https://yarnpkg.com/en/), run `yarn add csv`.
 
-The main modules are fully compatible with the Node.js native [stream API](https://nodejs.org/api/stream.html). Alternative API are also provided for convenience such as the callback, sync and promise APIs.
+The main modules are fully compatible with the Node.js native [stream API](https://nodejs.org/api/stream.html). Alternative APIs are also provided for convenience such as the callback and sync APIs.
 
-For additional usage and examples, you may refer to
-[the example page](/project/examples/).
+For additional usage and examples, you may refer to [the example page](/project/examples/).

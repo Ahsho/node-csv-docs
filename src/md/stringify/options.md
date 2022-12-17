@@ -2,7 +2,7 @@
 title: Options
 description: Options relative to the csv-stringify package
 keywords: ['csv', 'stringify', 'options']
-sort: 3
+sort: 4
 ---
 
 # CSV Stringify options
@@ -17,6 +17,8 @@ All options are optional. All the options from the [Node.js Writable Stream API]
 * [`cast`](/stringify/options/cast/)   
   _Since version 1.1.0_   
   Defines custom cast for certain data types; was `formatters` until version 4.3.1.
+  * `bigint`
+    Custom function to transform bigint values.
   * `boolean`
     Custom function to transform boolean values.
   * `date`
@@ -25,15 +27,17 @@ All options are optional. All the options from the [Node.js Writable Stream API]
     Custom function to transform number values.
   * `object`
     Custom function to transform object literals.
+  * `string`
+    Custom function to transform string values.
 * [`columns`](/stringify/options/columns/) (array|object)   
   _Since version 0.0.1_   
-  List of properties when records are provided as objects; work with records in the form of arrays based on index position; order matters; auto discovered in the first record when the user write objects, can refer to nested properties of the input JSON, see the "header" option on how to print columns names on the first line.
+  Influence the generation of records at the field level.
 * [`delimiter`](/stringify/options/delimiter/) (string)   
   _Since version 0.0.1_   
   Set the field delimiter, one or multiple characters, defaults to a comma.   
 * `eof` (boolean)   
   _Since version 0.0.2_   
-  Add the value of "options.rowDelimiter" on the last line, default to true.   
+  Add the value of "options.record_delimiter" on the last line, default to true.   
 * `escape` (string|Buffer)   
   _Since version 0.0.1_   
   Single character used for escaping; only apply to characters matching the `quote` and the `escape` options default to `"`.   
@@ -42,7 +46,7 @@ All options are optional. All the options from the [Node.js Writable Stream API]
   Display the column names on the first line if the columns option is provided or discovered.   
 * `quote` (string|Buffer|boolean)   
   _Since version 0.0.1_   
-  The quote characters surrounding a field, defaults to the `"` (double quotation marks), an empty quote value will preserve the original field, wether it contains quotation marks or not.   
+  The quote characters surrounding a field, defaults to the `"` (double quotation marks), an empty quote value will preserve the original field, whether it contains quotation marks or not.   
 * [`quoted`](/stringify/options/quoted/) (boolean)    
   _Since version 0.0.1_   
   Boolean, default to false, quote all the non-empty fields even if not required.
